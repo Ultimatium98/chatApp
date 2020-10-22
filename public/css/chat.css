@@ -1,0 +1,126 @@
+/* header */
+
+header {
+  background-color: #84c1ff;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header .logo {
+  max-height: 100%;
+  width: 20%;
+  margin: 10px 20px;
+  color: white;
+}
+
+header .logo img {
+  height: 90%;
+  width: 50%;
+  filter: invert(1);
+}
+
+header .welcome-header {
+  width: 60%;
+  align-self: center;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+header .logout {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+header .logout button {
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background: #d6eaff;
+}
+header .logout button:hover {
+  background: #eaf4ff;
+}
+
+/* main */
+.main-site{
+  height: 90%;
+  display: flex;
+}
+
+.chat-container{
+  height: 85%;
+  width: 90%;
+  margin: auto;
+  /* background-color: #84c1ff; */
+  border: 2px solid #84c1ff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* lista */
+.chat-container .group-list{
+  height: 6%;
+  width: 100%;
+  background-color:  #84c1ff;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: center;
+}
+
+.chat-container .group-list ul {
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.chat-container .group-list ul li{
+  height: 100%;
+  align-self: center;
+}
+
+.chat-container .group-list .arg{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #d6eaff;
+  font-size: 20px;
+  max-width: 100px;
+  max-height: 40px;
+  padding: 5px;
+  margin: 0 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid grey;
+  text-align: center;
+}
+.chat-container .group-list .arg p{
+  align-self: center;
+  margin: 0;
+  padding: 0 3px 3px 3px;
+}
+.chat-container .group-list .arg:hover,
+.chat-container .group-list .arg.active{
+  background-color: #eaf4ff;
+}
+.chat-container .block-container {
+  height: 94%;
+  width: 100%;
+  background-color:  #eaf4ff ;
+  border-radius: 0 0 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.chat-container .block-container .arg-container {
+  height: 100%;
+  width: 100%;
+}
