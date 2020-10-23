@@ -25,31 +25,85 @@
         <div class="group-list">
           <ul>
             <li>
-              <div class="add arg active">
+              <div class="_add arg">
                 <p> 	&#65291; </p>
               </div>
             </li>
             <li>
-              <div class="Arg1 arg">
+              <div class="Lavoro arg active">
                 <p>Lavoro</p>
               </div>
             </li>
             <li>
-              <div class="Arg2 arg">
-                <p>Arg2</p>
+              <div class="Futuro arg">
+                <p>Futuro</p>
               </div>
             </li>
           </ul>
         </div>
         <div class="block-container">
-          <div id="add" class="add arg-container active">
+          <div class="_add arg-container">
             <div class="form-group">
               <form class="form">
                 <input id="new-group" type="text" name="group" value="" placeholder="insert new group">
-                <input type="submit" name="submit-btn" value="Join">
+                <input class="btn" type="submit" name="submit-btn" value="Join">
               </form>
             </div>
           </div>
+          <!-- inizio chat -->
+          <div class="Lavoro arg-container active">
+            <div class="chat-wrapper">
+              <div class="list-users">
+                <div class="group-info">
+                  <h1>Your group:</h1>
+                  <p>Javascript e vaffancyk</p>
+                </div>
+                <div class="users-on">
+                  <h1>Users online: 90</h1>
+                  <ul>
+                    <li>Capenna1: <span class="on">online</span></li>
+                    <li>Capenna2: <span class="on">online</span></li>
+                    <li>Capenna3: <span class="type">typing...</span></li>
+                    <li>Capenna4: <span class="type">typing...</span></li>
+                    <li>Capenna5: <span class="type">typing...</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="chat">
+                <div class="chat-msg">
+                  <div class="chat-msg-header">
+                    <h1>Username</h1>
+                    <h6>Date</h6>
+                  </div>
+                  <div class="chat-msg-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+                <div class="chat-msg-info">
+                  <p>User Capenna has joined the chat!</p>
+                </div>
+                <div class="chat-msg user">
+                  <div class="chat-msg-header">
+                    <h1>Username</h1>
+                    <h6>Date</h6>
+                  </div>
+                  <div class="chat-msg-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  </div>
+                </div>
+                <div class="chat-msg-info">
+                  <p>User Capenna has left the chat!</p>
+                </div>
+              </div>
+            </div>
+            <div class="send-msg">
+              <form class="form-msg">
+                <input class="msg-text" type="text" name="msg" value="" placeholder="Enter message">
+                <input class=" btn msg-btn" type="submit" name="msg-btn" value="Send">
+              </form>
+            </div>
+          </div>
+          <!-- fine chat -->
         </div>
       </div>
     </div>

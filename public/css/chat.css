@@ -67,7 +67,7 @@ header .logout button:hover {
 
 /* lista */
 .chat-container .group-list{
-  height: 6%;
+  height: 7%;
   width: 100%;
   background-color:  #84c1ff;
   border-radius: 20px 20px 0 0;
@@ -76,6 +76,9 @@ header .logout button:hover {
 }
 
 .chat-container .group-list ul {
+  padding: 0;
+  margin: 0;
+  align-self: center;
   height: 100%;
   display: flex;
   flex-direction: row-reverse;
@@ -84,12 +87,14 @@ header .logout button:hover {
 .chat-container .group-list ul li{
   height: 100%;
   align-self: center;
+  display: flex;
 }
 
 .chat-container .group-list .arg{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-self: center;
   background: #d6eaff;
   font-size: 20px;
   max-width: 100px;
@@ -108,10 +113,10 @@ header .logout button:hover {
 }
 .chat-container .group-list .arg:hover,
 .chat-container .group-list .arg.active{
-  background-color: #eaf4ff;
+  background-color: #f8fbff;
 }
 .chat-container .block-container {
-  height: 94%;
+  height: 93%;
   width: 100%;
   background-color:  #eaf4ff ;
   border-radius: 0 0 25px 25px;
@@ -123,4 +128,213 @@ header .logout button:hover {
 .chat-container .block-container .arg-container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-container .block-container ._add {
+  height: 50%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.chat-container .block-container .form-group{
+  height: 50%;
+  width: 50%;
+  align-self: center;
+  margin: auto;
+
+}
+.chat-container .block-container .form-group .form{
+  height: 50%;
+  display: flex;
+  flex-direction:column;
+  align-self: center;
+  margin: 70px auto;
+}
+.chat-container .block-container .form-group .form{
+  height: 50%;
+  display: flex;
+  flex-direction:column;
+  align-self: center;
+  margin: 70px auto;
+}
+.btn{
+  width: 40%;
+  margin: 10px auto;
+  color: white;
+  background-color: #84c1ff;
+}
+
+.btn:hover{
+  background-color: #d6eaff;
+}
+
+#new-group{
+  text-align: center;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+/* chat */
+
+.block-container .arg-container .chat-wrapper{
+  background-color: #d6eaff;
+  height: 94%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* list users */
+.block-container .arg-container .chat-wrapper .list-users{
+  background-color: #84c1ff;
+  height: 100%;
+  width: 20%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+.block-container .arg-container .chat-wrapper .list-users .group-info{
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
+
+.list-users .group-info h1{
+  font-size: 25px;
+  margin: 10px 0;
+}
+.block-container .arg-container .chat-wrapper .list-users .group-info p{
+  width: 90%;
+  margin: 10px auto;
+  color: black;
+  background-color: #eaf4ff;
+  font-size: 20px;
+}
+
+.block-container .arg-container .chat-wrapper .list-users .users-on{
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
+
+.list-users .users-on h1 {
+  font-size: 25px;
+  margin: 10px 0;
+}
+
+.list-users .users-on ul {
+  padding: 2px 0;
+  margin: 0 auto;
+  width: 90%;
+  color: black;
+  background-color: #eaf4ff;
+}
+.list-users .users-on li {
+  margin: 20px 5px;
+  text-align: left;
+  font-size: 18px;
+  color: black;
+}
+.list-users .users-on ul li .on{
+  color: green;
+}
+.list-users .users-on ul li .type{
+  color: #84c1ff;
+}
+
+/* chat msgs */
+
+.chat-wrapper .chat {
+  align-self: center;
+  height: 98%;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #d6eaff;
+  overflow: auto;
+}
+
+.chat-wrapper .chat .chat-msg {
+  background-color: #add6ff;
+  max-width: 40%;
+  margin: 10px 0 10px 20px;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-wrapper .chat .chat-msg .chat-msg-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.chat-wrapper .chat .chat-msg .chat-msg-header h1{
+  font-size: 30px;
+  background-color: #eaf4ff;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+.chat-wrapper .chat .chat-msg .chat-msg-header h1, h6{
+  align-self: center;
+}
+.chat-wrapper .chat .chat-msg-info{
+  max-width: 70%;
+  align-self: center;
+  background-color: #eaf4ff;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+.chat-wrapper .chat .chat-msg-info p{
+  margin: 0;
+  font-size: 18px;
+}
+
+.chat-wrapper .chat .chat-msg.user {
+  align-self: flex-end;
+  max-width: 40%;
+  margin: 20px 20px 10px 0;
+}
+/* input msgs */
+.block-container .arg-container .send-msg{
+  /* background-color: yellow; */
+  height: 6%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.block-container .arg-container .send-msg .form-msg{
+  /* background-color: orange; */
+  height: 90%;
+  width: 95%;
+  align-self: center;
+  display: flex;
+}
+.block-container .arg-container .send-msg .form-msg .msg-text{
+  height: 85%;
+  width: 90%;
+  background-color: inherit;
+  border: 1px solid lightgrey;
+  margin: 2px 0 0 0;
+}
+.block-container .arg-container .send-msg .form-msg .msg-btn{
+  height: 90%;
+  width: 10%;
+  margin: 1px 0 0 5px;
+  padding: 0;
+}
+
+/* display none */
+.block-container .arg-container:not(.active){
+  display: none;
 }
