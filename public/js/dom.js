@@ -1,5 +1,53 @@
-export function outputMsg(data){
-  let selector = "."+data.arg+".arg-container .chat-wrapper .chat";
+import * as main from './main.js';
+
+// function to change status {online, typing}
+export function changeStatus(data, status){
+  let selector = "."+data.room+" .chat-wrapper .list-users .users-on ul ."+data.user +" span";
+  let span = document.querySelector(selector);
+  if(status === "type"){
+    span.classList.remove("on");
+    span.classList.add("type");
+    span.textContent = "is typing...";
+  }
+  else if(status === "online"){
+    span.classList.remove("type");
+    span.classList.add("on");
+    span.textContent = "online";
+  }
+}
+
+// functions to handle users online
+export function removeList(data){
+  let selector = "."+data.room + ".arg-container .chat-wrapper .list-users .users-on ul ." + data.user;
+  const li = document.querySelector(selector);
+  li.remove();
+}
+
+export function addList(data){
+  let selector = "."+data.room + ".arg-container .chat-wrapper .list-users .users-on ul";
+  const ul = document.querySelector(selector);
+  const li = document.createElement("li");
+  li.classList.add(data.user);
+  li.innerHTML = `${data.user}: <span class="on">online</span>`;
+  ul.appendChild(li);
+}
+
+export function getList(data){
+  let selector = "."+data[0].room + ".arg-container .chat-wrapper .list-users .users-on ul";
+  const ul = document.querySelector(selector);
+  for(let i = 0; i < data.length; i++){
+    let li = document.createElement("li");
+    li.classList.add(data[i].user);
+    li.innerHTML = `${data[i].user}: <span class="on">online</span>`;
+    ul.appendChild(li);
+  }
+}
+
+// functions to manipulate dom
+
+// function to create messages
+export function outputMsg(user, data){
+  let selector = "."+data.room+".arg-container .chat-wrapper .chat";
   const chat = document.querySelector(selector);
   if(data.type === "info"){
     const msgInfo = document.createElement("div");
@@ -10,7 +58,7 @@ export function outputMsg(data){
   else{
     const msg = document.createElement("div");
     msg.classList.add("chat-msg");
-    if(data.type === "sent"){
+    if(data.user === user){
       msg.classList.add("user");
     }
     msg.innerHTML = `<div class="chat-msg-header">
@@ -22,8 +70,10 @@ export function outputMsg(data){
     </div>`;
     chat.appendChild(msg);
   }
+  chat.scrollTop = chat.scrollHeight;
 }
 
+// function to display current block
 export function display(arg){
   let activeBlk = $(".arg-container.active");
   let activeBtn = $(".arg.active");
@@ -36,23 +86,27 @@ export function display(arg){
   newActiveBlk.addClass("active");
   newActiveBtn.addClass("active");
 }
-export function addGroup(arg, data){
-  createArg(arg, data);
+
+// functions to create new rooms
+export function addGroup(data){
+  createArg(data);
+  console.log(data);
   const ul = document.querySelector(".chat-container .group-list ul");
   const newArg = document.createElement("li");
-  newArg.innerHTML = `<div class="${arg} arg">
-    <p>${arg}</p>
+  newArg.innerHTML = `<div class="${data.room} arg">
+    <p>${data.room}</p>
   </div>`;
   newArg.addEventListener("click", function(){
-    display(arg);
+    display(data.room);
   })
   ul.append(newArg);
+  // main.emitRoom(data);
 }
 
-function createArg(arg, data){
+function createArg(data){
   const father = document.querySelector('.block-container');
   const newArg = document.createElement("div");
-  newArg.classList.add(arg);
+  newArg.classList.add(data.room);
   newArg.classList.add("arg-container");
   father.appendChild(newArg);
 
@@ -60,24 +114,21 @@ function createArg(arg, data){
   wrapper.classList.add("chat-wrapper");
   newArg.appendChild(wrapper);
 
-  // lista
+  // user list
   const listUsers = document.createElement("div");
   listUsers.classList.add("list-users");
   const groupInfo = document.createElement("div");
   groupInfo.classList.add("group-info");
-  groupInfo.innerHTML = `<h1>Your Group:</h1><p>${data.group}</p>`;
+  groupInfo.innerHTML = `<h1>Your Group:</h1><p>${data.room}</p>`;
   listUsers.appendChild(groupInfo);
   const usersOn = document.createElement("div");
   usersOn.classList.add("users-on");
-  usersOn.innerHTML = `<h1>Users online: Num</h1><ul></ul>`;
-  // if(data users != 0 )...
-    // get ul
-    // for each user
-    // ul append users
+  usersOn.innerHTML = `<h1>Users online: </h1><ul></ul>`;
+
   listUsers.appendChild(usersOn);
   wrapper.appendChild(listUsers);
-  // Chat
 
+  // Chat
   const chat = document.createElement("div");
   chat.classList.add("chat");
   wrapper.appendChild(chat);
@@ -87,9 +138,47 @@ function createArg(arg, data){
   sendMsg.classList.add("send-msg");
   const form = document.createElement("form");
   form.classList.add("form-msg");
-  form.innerHTML = `
-  <input class="msg-text" type="text" name="msg" value="" placeholder="Enter message">
-  <input class=" btn msg-btn" type="submit" name="msg-btn" value="Send">`;
+
+  // inputForm
+  const inputForm = document.createElement("input");
+  inputForm.classList.add("msg-text");
+  inputForm.type="text";
+  inputForm.name = "msg";
+  inputForm.value="";
+  inputForm.placeholder="Enter message";
+  inputForm.autocomplete="off";
+  const btnForm = document.createElement("input");
+  btnForm.classList.add("btn");
+  btnForm.classList.add("msg-btn");
+  btnForm.type="submit";
+  btnForm.name="msg-btn";
+  btnForm.value = "Send";
+  form.appendChild(inputForm);
+  form.appendChild(btnForm);
+
+  inputForm.addEventListener("keyup", function(e){
+    if(this.value.length > 0){
+      main.emitType(data);
+    }
+    else {
+      main.emitOnline(data);
+    }
+  });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    let text = e.target[0].value;
+    e.target[0].value = "";
+    let obj = {
+      user: data.user,
+      text: text,
+      room: data.room
+    };
+    main.emitOnline(obj);
+    main.emitMsg(obj);
+    e.target[0].focus();
+  });
+
   sendMsg.appendChild(form);
   newArg.appendChild(sendMsg);
 }

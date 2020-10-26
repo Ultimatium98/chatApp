@@ -1,89 +1,99 @@
 import * as dom from './dom.js';
 
+// get user from url
+const QsUser = Qs.parse(location.search, {
+  ignoreQueryPrefix: true
+});
+const user = QsUser.username;
+const p = document.querySelector("#err");
 
-let data = {
-  group: "Lavoro1"
-};
-let data2 = {
-  group: "Lavoro2"
-};
-let data3 = {
-  group: "Lavoro3"
-};
-// dom.createArg("Lavoro2", data);
-// dom.display("Lavoro2");
+let groups = [];
+const socket = io();
 
-dom.addGroup("Lavoro1", data);
-dom.addGroup("Lavoro2", data2);
-dom.addGroup("Lavoro3", data3);
+// functions to handle sockets
+export function emitMsg(data){
+  socket.emit('chatMsg', data);
+}
+
+export function emitRoom(data){
+  socket.emit('joinRoom', data);
+}
+
+export function emitType(data){
+  socket.emit('userTyping', data);
+}
+export function emitOnline(data){
+  socket.emit('userOnline', data);
+}
+socket.on('msg', function(data){
+  dom.outputMsg(user, data)
+});
+
+socket.on('infoMsg', function(data){
+  dom.outputMsg(user, data);
+});
+
+socket.on('getList', function(data){
+  dom.getList(data);
+})
+
+socket.on('addList', function(data){
+  dom.addList(data);
+})
+
+socket.on('removeList', function(data){
+  dom.removeList(data);
+})
+
+socket.on("typing", function(data){
+  dom.changeStatus(data, "type");
+})
+
+socket.on("online", function(data){
+  dom.changeStatus(data, "online");
+})
+
+socket.on('createArg', function(data){
+  dom.addGroup(data);
+})
+socket.on("exists", function(){
+  p.textContent = "Username already taken in this room!";
+})
+
+let welcome = document.querySelector('.welcome-header h1');
+welcome.textContent = `Welcome ${user}!`;
+
 let addGroupBtn = document.querySelector("._add");
 addGroupBtn.addEventListener("click", function(){
   dom.display("_add");
 });
 
-let data11 = {
-  arg: "Lavoro1",
-  type: "sent",
-  user: "capenna",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro1"
-};
-let data12 = {
-  arg: "Lavoro1",
-  type: "rec",
-  user: "capenna2",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro1"
-};
-let data13 = {
-  arg: "Lavoro1",
-  type: "info",
-  text: "messaggio prova info Lavoro1"
-};
-let data21 = {
-  arg: "Lavoro2",
-  type: "sent",
-  user: "capenna",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro2"
-};
-let data22 = {
-  arg: "Lavoro2",
-  type: "rec",
-  user: "capenna2",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro2"
-};
-let data23 = {
-  arg: "Lavoro2",
-  type: "info",
-  text: "messaggio prova info Lavoro2"
-};
-let data31 = {
-  arg: "Lavoro3",
-  type: "sent",
-  user: "capenna",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro3"
-};
-let data32 = {
-  arg: "Lavoro3",
-  type: "rec",
-  user: "capenna2",
-  date: "13/04/2020",
-  text: "messaggio prova Lavoro3"
-};
-let data33 = {
-  arg: "Lavoro3",
-  type: "info",
-  text: "messaggio prova info Lavoro3"
-};
-dom.outputMsg(data11);
-dom.outputMsg(data12);
-dom.outputMsg(data13);
-dom.outputMsg(data21);
-dom.outputMsg(data22);
-dom.outputMsg(data23);
-dom.outputMsg(data31);
-dom.outputMsg(data32);
-dom.outputMsg(data33);
+let addBtn = document.querySelector('.form-group .form');
+addBtn.addEventListener("submit", function(e){
+  e.preventDefault();
+  p.textContent="";
+  let input = document.querySelector("#new-group");
+  let value = input.value;
+  let room = value.replace(/ /g, "-");
+  if(room[0] !== "_" && !groups.includes(room)){
+    // let room = input.value;
+    console.log(groups);
+    groups.push(room);
+    input.value = "";
+    let data = {
+      user: user,
+      room: room
+    };
+    // dom.addGroup(data);
+    socket.emit('joinRoom', data); 
+  }
+  else{
+    let err = "";
+    if(room[0]=== "_")
+      err = "Rooms cannot start with '_' !";
+    else if(groups.includes(room))
+      err = "Room name already taken";
+    p.textContent=err;
+    input.value = "";
+  }
+})

@@ -36,14 +36,18 @@ header .logout {
   justify-content: center;
 }
 
-header .logout button {
+header .logout form{
+  align-self: center; 
+}
+
+header .logout form button {
   margin: auto;
   border: none;
   border-radius: 10px;
   padding: 5px 10px;
   background: #d6eaff;
 }
-header .logout button:hover {
+header .logout form button:hover {
   background: #eaf4ff;
 }
 
@@ -264,7 +268,7 @@ header .logout button:hover {
 
 .chat-wrapper .chat .chat-msg {
   background-color: #add6ff;
-  min-width: 30%; 
+  min-width: 30%;
   max-width: 40%;
   margin: 10px 0 10px 20px;
   padding: 15px;
