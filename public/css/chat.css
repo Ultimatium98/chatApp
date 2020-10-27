@@ -37,7 +37,7 @@ header .logout {
 }
 
 header .logout form{
-  align-self: center; 
+  align-self: center;
 }
 
 header .logout form button {
@@ -144,6 +144,11 @@ header .logout form button:hover {
   align-self: center;
 }
 
+#err {
+  color: red;
+  text-align: center;
+  margin: 0;
+}
 .chat-container .block-container .form-group{
   height: 50%;
   width: 50%;
@@ -283,13 +288,17 @@ header .logout form button:hover {
   justify-content: space-between;
 }
 .chat-wrapper .chat .chat-msg .chat-msg-header h1{
-  font-size: 30px;
+  font-size: 25px;
   background-color: #eaf4ff;
   padding: 0 10px;
   border-radius: 5px;
 }
 .chat-wrapper .chat .chat-msg .chat-msg-header h1, h6{
   align-self: center;
+}
+.chat-wrapper .chat .chat-msg .chat-msg-body p{
+  font-size: 20px;
+  padding: 0 10px;
 }
 .chat-wrapper .chat .chat-msg-info{
   max-width: 70%;
@@ -342,4 +351,131 @@ header .logout form button:hover {
 /* display none */
 .block-container .arg-container:not(.active){
   display: none;
+}
+
+@media screen and (max-width: 900px){
+
+  header .logo{
+    width: 15%;
+  }
+  header .logo img{
+    width: 70%;
+    margin-right: 2px;
+  }
+  header .welcome-header h1{
+    font-size: 20px;
+  }
+
+  header .logout{
+    justify-content: flex-start;
+  }
+  header .logout form{
+    height: 50%;
+    width: 50%;
+    align-self: center;
+  }
+  .chat-container{
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    border-radius: 0px;
+  }
+
+  /* lista */
+  .chat-container .group-list{
+    height: 8%;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .chat-container .group-list ul {
+    max-width: 90%;
+  }
+  .chat-container .block-container {
+    height: 92%;
+    border-radius: 0;
+  }
+
+  .chat-container .block-container .arg-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-container .block-container ._add {
+    height: 100%;
+    width: 100%;
+  }
+
+  .chat-container .block-container .form-group{
+    width: 80%;
+  }
+
+  /* chat */
+
+  .block-container .arg-container .chat-wrapper{
+    background-color: #d6eaff;
+    height: 94%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  /* list users */
+  .block-container .arg-container .chat-wrapper .list-users{
+    height: 100%;
+    width: 25%;
+    max-width: 350px;
+  }
+  .block-container .arg-container .chat-wrapper .list-users .group-info h1{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+  }
+
+  .block-container .arg-container .chat-wrapper .list-users .group-info p{
+    font-size: 15px;
+  }
+
+  .list-users .users-on h1 {
+    font-size: 20px;
+  }
+
+  .list-users .users-on li {
+    font-size: 15px;
+  }
+
+  /* chat msgs */
+
+  .chat-wrapper .chat {
+    width: 75%;
+  }
+
+  .chat-wrapper .chat .chat-msg {
+    background-color: #add6ff;
+    min-width: 90%;
+    max-width: 90%;
+    margin: 10px 5px;
+  }
+  .chat-wrapper .chat .chat-msg .chat-msg-header h1{
+    font-size: 20px;
+  }
+  .chat-wrapper .chat .chat-msg .chat-msg-body p{
+    font-size: 17px;
+  }
+
+  /* input msgs */
+  .block-container .arg-container .send-msg .form-msg .msg-btn{
+    height: 90%;
+    width: 15%;
+    margin: 1px 0 0 5px;
+    padding: 0;
+  }
+
+  /* display none */
+  .block-container .arg-container:not(.active){
+    display: none;
+  }
 }

@@ -75,8 +75,8 @@ addBtn.addEventListener("submit", function(e){
   let input = document.querySelector("#new-group");
   let value = input.value;
   let room = value.replace(/ /g, "-");
-  if(room[0] !== "_" && !groups.includes(room)){
-    // let room = input.value;
+  if(value.match(/^[A-Za-z][0-9a-z\s]+$/) && !groups.includes(room) && groups.length <10){
+  // if(room[0] !== "_" && !groups.includes(room)){
     console.log(groups);
     groups.push(room);
     input.value = "";
@@ -85,14 +85,17 @@ addBtn.addEventListener("submit", function(e){
       room: room
     };
     // dom.addGroup(data);
-    socket.emit('joinRoom', data); 
+    socket.emit('joinRoom', data);
   }
   else{
     let err = "";
-    if(room[0]=== "_")
-      err = "Rooms cannot start with '_' !";
-    else if(groups.includes(room))
+    if(groups.includes(room))
       err = "Room name already taken";
+    else if (groups.length >= 10)
+      err = "Number of rooms must be less than 10!";
+    else
+      err = "Rooms can only contains alphanumerical characters and cannot start with a number!";
+
     p.textContent=err;
     input.value = "";
   }
