@@ -1,5 +1,5 @@
-# chatApp
-Realtime webChat realized with npm. the port on which the application will run is 8000.
+# ChatApp
+Realtime webChat realized with Node.js. The port on which the application will run is 8000.
 
 To install all dependencies run: 
 
@@ -7,7 +7,7 @@ To install all dependencies run:
 npm install
 ```
 
-##Run
+#Run
 
 To run digit: 
 
@@ -15,7 +15,7 @@ To run digit:
 npm start
 ```
 
-##Test
+#Test
 
 To test functions run: 
 
