@@ -1,5 +1,5 @@
 const remove = require('lodash.remove');
-const findIndex = require('lodash.findindex'); 
+const findIndex = require('lodash.findindex');
 const _ = require('lodash');
 let users = [];
 
@@ -13,6 +13,9 @@ function getCurrentUser(id){
   return users.find(user => user.id === id);
 }
 
+function getArray(){
+  return users;
+}
 function getRoomUsers(room){
   return users.filter(user => user.room === room);
 }
@@ -35,5 +38,6 @@ module.exports = {
   getCurrentUser,
   getRoomUsers,
   userLeave,
-  roomContains
+  roomContains,
+  getArray
 };

@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "mocha",
     "start": "node app",
     "dev": "nodemon app"
   },
@@ -15,9 +16,11 @@
     "lodash.findindex": "^4.6.0",
     "lodash.remove": "^4.7.0",
     "moment": "^2.29.1",
+    "sinon": "^9.2.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "mocha": "^8.2.0",
     "nodemon": "^2.0.6"
   }
 }
