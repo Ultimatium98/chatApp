@@ -7,7 +7,7 @@ To install all dependencies run:
 npm install
 ```
 
-#Run
+## Run
 
 To run digit: 
 
@@ -15,7 +15,7 @@ To run digit:
 npm start
 ```
 
-#Test
+## Test
 
 To test functions run: 
 
