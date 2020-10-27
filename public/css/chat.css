@@ -144,11 +144,6 @@ header .logout form button:hover {
   align-self: center;
 }
 
-#err {
-  color: red;
-  text-align: center;
-  margin: 0;
-}
 .chat-container .block-container .form-group{
   height: 50%;
   width: 50%;

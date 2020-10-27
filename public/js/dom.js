@@ -90,7 +90,6 @@ export function display(arg){
 // functions to create new rooms
 export function addGroup(data){
   createArg(data);
-  console.log(data);
   const ul = document.querySelector(".chat-container .group-list ul");
   const newArg = document.createElement("li");
   newArg.innerHTML = `<div class="${data.room} arg">
@@ -100,7 +99,6 @@ export function addGroup(data){
     display(data.room);
   })
   ul.append(newArg);
-  // main.emitRoom(data);
 }
 
 function createArg(data){

@@ -5,7 +5,7 @@ body{
 }
 
 ul {
-  list-style-type: none; 
+  list-style-type: none;
 }
 .main-site {
   height: 100%;
@@ -32,6 +32,7 @@ ul {
   justify-content: center;
   background-color: #84c1ff;
   text-align: center;
+  color: white; 
 }
 
 .form-container .form-user {
@@ -66,4 +67,20 @@ ul {
   padding: 0;
   text-align: center;
   border: none;
+}
+
+
+#err {
+  color: red;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 900px){
+  .form-container{
+    height: 100%;
+    width: 100%;
+  }
+
+
 }

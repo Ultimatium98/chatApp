@@ -76,8 +76,6 @@ addBtn.addEventListener("submit", function(e){
   let value = input.value;
   let room = value.replace(/ /g, "-");
   if(value.match(/^[A-Za-z][0-9a-z\s]+$/) && !groups.includes(room) && groups.length <10){
-  // if(room[0] !== "_" && !groups.includes(room)){
-    console.log(groups);
     groups.push(room);
     input.value = "";
     let data = {
